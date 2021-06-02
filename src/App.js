@@ -2,18 +2,9 @@ import React, { useState, useEffect } from "react";
 import Nav from './components/Nav.js'
 
 const App = () => {
-// 	fetch('https://shielded-peak-43727.herokuapp.com/weather/?q=minneapolis')
-// 	.then(response => response.json())
-// 	.then(json => console.log(json))
-// 	.catch(error => console.log(error))
-// 	
-// 	fetch('https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active')
-// 	.then(response => response.json())
-// 	.then(json => console.log(json))
-// 	.catch(error => console.log(error))
 	const pullItems = async function() {
 		//needs error handling
-		const response = await fetch('https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active')
+		const response = await fetch('https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8')
 		const items = await response.json();
 		console.log(items)
 		return items;
@@ -29,8 +20,8 @@ const App = () => {
 	
 	const findImageObj = function (id, array) {
 		let arr = array.filter(element => Number(element.params.listing_id) === Number(id))
-		console.log(arr)
-		return arr
+		console.log(arr[0])
+		return arr[0]
 	}
 	
 	const getAllData = async function() {
@@ -63,7 +54,7 @@ const App = () => {
 					<ul>
 						<li>{result.description}</li>
 						<li>${result.price}</li>
-						{/*<li>{findImageObj(result.listing_id, images).results[0].listing_image_id}</li>*/}
+						<li><img src={findImageObj(result.listing_id, images).results[0].url_570xN}/></li>
 					</ul>
 				</li>
 			))}
