@@ -4,12 +4,7 @@ import Nav from './components/Nav.js'
 const App = () => {
 	const pullItems = async function(offset) {
 		//needs error handling
-		let response
-		if (offset) {
-			response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8${offset}`)
-		} else {
-			response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8`)
-		}
+		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8${offset}`)
 		const items = await response.json();
 		console.log(items)
 		return items;
@@ -50,9 +45,8 @@ const App = () => {
 		return arr[0]
 	}
 	
-	const getAllData = async function() {
-		const allItems = await pullItems();
-		await console.log(makePageArray(allItems));
+	const getData = async function(offset) {
+		const allItems = await pullItems(offset);
 		let allImages = [];
 		for (const result of allItems.results) {
 			const imageSet = await pullItemImages(result.listing_id)
@@ -60,13 +54,15 @@ const App = () => {
 		}
 		await setImages(allImages)
 		await setItems(allItems)
+		await setPageArray(makePageArray(allItems))
 	}
 	
 	const [items, setItems] = useState({results: []});
 	const [images, setImages] = useState([]);
+	const [pageArray, setPageArray] = useState([])
 	
 	useEffect(() => {
-		getAllData()
+		getData('&offset=0')
 	}, []);
 	
 	return (
@@ -80,12 +76,14 @@ const App = () => {
 					<ul>
 						<li>{result.description}</li>
 						<li>${result.price}</li>
-						<li><img src={findImageObj(result.listing_id, images).results[0].url_570xN}/></li>
+						{findImageObj(result.listing_id, images) ? <li><img src={findImageObj(result.listing_id, images).results[0].url_570xN}/></li> : <li></li>}
 					</ul>
 				</li>
 			))}
  			</ul>
- 			<button onClick={updatePage}>Update Page (?)</button>
+ 			<p> Page: 
+ 			{pageArray && pageArray.map((page) => (<a style={{marginRight: "5px"}} href="javascript:void(0)" onClick={() => getData(page)}>{pageArray.indexOf(page)+1}</a>))}
+ 			</p>
 		</div>
 	);
 };
