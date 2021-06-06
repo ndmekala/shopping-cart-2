@@ -3,3 +3,7 @@ body {
 	color: darkslategrey;
 	font-family: Georgia;
 }
+
+.sr-only {
+	display: none;
+}

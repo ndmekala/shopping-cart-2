@@ -3,11 +3,12 @@ import DisplayCard from './DisplayCard.js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Pagination from 'react-bootstrap/Pagination'
 
 const Shop = () => {
 	const pullItems = async function(offset) {
 		//needs error handling
-		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8${offset}`)
+		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${offset}`)
 		const items = await response.json();
 		console.log(items)
 		return items;
@@ -16,7 +17,7 @@ const Shop = () => {
 	const makePageArray = function(itemArray) {
 		let arr = [];
 		for (let i = 0; i < Math.ceil(itemArray.count/8); i++) {
-			arr.push(`&offset=${i*8}`)
+			arr.push(`${i*8}`)
 		}
 		console.log(arr)
 		return arr
@@ -43,15 +44,17 @@ const Shop = () => {
 		}
 		await setImages(allImages)
 		await setItems(allItems)
+		await setPageNum(Number(offset)/8+1)
 		await setPageArray(makePageArray(allItems))
 	}
 	
 	const [items, setItems] = useState({results: []});
 	const [images, setImages] = useState([]);
-	const [pageArray, setPageArray] = useState([])
+	const [pageArray, setPageArray] = useState([]);
+	const [pageNum, setPageNum] = useState(1);
 	
 	useEffect(() => {
-		getData('&offset=0')
+		getData('0')
 	}, []);
 	
 	return (
@@ -65,9 +68,15 @@ const Shop = () => {
 			</Row>
 			<Row>
 			<Col>
-			<p> Page: 
- 			{pageArray && pageArray.map((page) => (<a style={{marginRight: "5px"}} href="javascript:void(0)" onClick={() => getData(page)}>{pageArray.indexOf(page)+1}</a>))}
- 			</p>
+			<Pagination className="justify-content-center">
+			{pageArray && pageArray.map((page) => (
+				<Pagination.Item key={pageArray.indexOf(page)+1}
+				active={pageArray.indexOf(page)+1 === pageNum}
+				onClick={() => getData(page)}>
+					{pageArray.indexOf(page)+1}
+				</Pagination.Item>
+			))}
+			</Pagination>
  			</Col>
 			</Row>
 			</Container>
