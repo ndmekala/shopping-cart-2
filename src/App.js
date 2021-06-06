@@ -8,7 +8,6 @@ const App = () => {
 	return (
 		<div>
 			<Nav />
-			<h1>Hello from App</h1>
 			<Shop />
 		</div>
 	);

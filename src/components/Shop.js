@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from "react";
 import DisplayCard from './DisplayCard.js'
+import Container from 'react-bootstrap/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 const Shop = () => {
 	const pullItems = async function(offset) {
@@ -11,8 +14,8 @@ const Shop = () => {
 	}
 	
 	const makePageArray = function(itemArray) {
-		let arr = []
-		for (let i = 0; i < Math.ceil(itemArray.count / 8); i++) {
+		let arr = [];
+		for (let i = 0; i < Math.ceil(itemArray.count/8); i++) {
 			arr.push(`&offset=${i*8}`)
 		}
 		console.log(arr)
@@ -53,25 +56,21 @@ const Shop = () => {
 	
 	return (
 		<div>
+			<Container>
 			<h1>Hello from Shop</h1>
-			<ul>
-			{items && items.results.map((result) => (
-				<li key={result.listing_id}>
-					<a href={result.url}>{result.title}</a>
-					<ul>
-						<li>{result.description}</li>
-						<li>${result.price}</li>
-						{findImageObj(result.listing_id, images) ? <li><img src={findImageObj(result.listing_id, images).results[0].url_570xN}/></li> : <li></li>}
-					</ul>
-				</li>
-			))}
- 			</ul>
+			<Row>
  			{items && items.results.map((result) => (
  				<DisplayCard key={result.listing_id} itemInfo={result} imgSource={findImageObj(result.listing_id, images) ? findImageObj(result.listing_id, images).results[0].url_570xN : ''}/>
 			))}
- 			<p> Page: 
+			</Row>
+			<Row>
+			<Col>
+			<p> Page: 
  			{pageArray && pageArray.map((page) => (<a style={{marginRight: "5px"}} href="javascript:void(0)" onClick={() => getData(page)}>{pageArray.indexOf(page)+1}</a>))}
  			</p>
+ 			</Col>
+			</Row>
+			</Container>
 		</div>
 	);
 };
