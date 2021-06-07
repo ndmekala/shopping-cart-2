@@ -1,9 +1,26 @@
 body {
-	background-color: cornsilk;
 	color: darkslategrey;
-	font-family: Georgia;
 }
 
 .sr-only {
 	display: none;
+}
+
+.navbar-brand {
+	transform: translateX(-50%);
+	left: 50%;
+	position: absolute;
+}
+
+.navbar {
+	height: 8rem;
+}
+
+.navbar-nav {
+	padding-left: 2rem;
+}
+
+.navbar-expand .navbar-nav .nav-link {
+	font-size: 1.5rem;
+	padding-right: 1.25rem;
 }

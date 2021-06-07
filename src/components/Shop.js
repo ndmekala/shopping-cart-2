@@ -53,14 +53,17 @@ const Shop = () => {
 	const [pageArray, setPageArray] = useState([]);
 	const [pageNum, setPageNum] = useState(1);
 	
+	const containerStyle = {
+		paddingTop: "1rem",
+	}
+	
 	useEffect(() => {
 		getData('0')
 	}, []);
 	
 	return (
 		<div>
-			<Container>
-			<h1>Hello from Shop</h1>
+			<Container style={containerStyle}>
 			<Row>
  			{items && items.results.map((result) => (
  				<DisplayCard key={result.listing_id} itemInfo={result} imgSource={findImageObj(result.listing_id, images) ? findImageObj(result.listing_id, images).results[0].url_570xN : ''}/>
