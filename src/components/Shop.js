@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from "react";
 import DisplayCard from './DisplayCard.js'
+import ItemDisplay from './ItemDisplay.js'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Pagination from 'react-bootstrap/Pagination'
 
 const Shop = () => {
-	const pullItems = async function(offset) {
+
+	//SHOP
+	const pullItems = async function(pageNumber) {
 		//needs error handling
-		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${offset}`)
+		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${pageNumber*8}`)
 		const items = await response.json();
 		console.log(items)
 		return items;
 	}
+	
+	//SHOP 
+	const pullItemImages = async function (id) {
+		// needs some error handling
+		const response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/listings/${id}/images`)
+		const obj = await response.json();
+		return obj;
+	}
+	
+	
+	
+	
 	
 	const makePageArray = function(itemArray) {
 		let arr = [];
@@ -21,13 +36,6 @@ const Shop = () => {
 		}
 		console.log(arr)
 		return arr
-	}
-	
-	const pullItemImages = async function (id) {
-		// needs some error handling
-		const response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/listings/${id}/images`)
-		const obj = await response.json();
-		return obj;
 	}
 	
 	const findImageObj = function (id, array) {
@@ -58,30 +66,37 @@ const Shop = () => {
 	}
 	
 	useEffect(() => {
-		getData('0')
+		//getData('0')
 	}, []);
 	
 	return (
 		<div>
 			<Container style={containerStyle}>
 			<Row>
- 			{items && items.results.map((result) => (
- 				<DisplayCard key={result.listing_id} itemInfo={result} imgSource={findImageObj(result.listing_id, images) ? findImageObj(result.listing_id, images).results[0].url_570xN : ''}/>
-			))}
+ 			{/*{items && items.results.map((result) => (
+ 				<DisplayCard key={result.listing_id}
+ 				itemInfo={result}
+				imgSource={findImageObj(result.listing_id, images)
+				? findImageObj(result.listing_id, images).results[0].url_570xN
+				: ''}/>
+			))}*/}
 			</Row>
 			<Row>
 			<Col>
 			<Pagination className="justify-content-center">
-			{pageArray && pageArray.map((page) => (
+			{/*{pageArray && pageArray.map((page) => (
 				<Pagination.Item key={pageArray.indexOf(page)+1}
 				active={pageArray.indexOf(page)+1 === pageNum}
 				onClick={() => getData(page)}>
 					{pageArray.indexOf(page)+1}
 				</Pagination.Item>
-			))}
+			))}*/}
 			</Pagination>
  			</Col>
 			</Row>
+			</Container>
+			<Container>
+			<ItemDisplay />
 			</Container>
 		</div>
 	);
