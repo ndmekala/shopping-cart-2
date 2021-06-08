@@ -1,5 +1,6 @@
 body {
 	color: darkslategrey;
+	font-family: 'Oxygen', sans-serif;
 }
 
 .sr-only {
@@ -13,14 +14,64 @@ body {
 }
 
 .navbar {
-	height: 8rem;
-}
-
-.navbar-nav {
-	padding-left: 2rem;
+	height: 4rem;
 }
 
 .navbar-expand .navbar-nav .nav-link {
-	font-size: 1.5rem;
-	padding-right: 1.25rem;
+	font-size: 1rem;
+	padding-right: 1rem;
+}
+
+.navbar-brand > img {
+	display: none;
+}
+
+/* small devices and up */
+@media (min-width: 576px) {
+	.navbar-nav {
+		padding-left: 1rem;
+	}
+	
+}
+
+/* medium devices and up */
+@media (min-width: 768px){
+	.navbar-expand .navbar-nav .nav-link {
+		font-size: 1.125rem;
+		padding-right: 1.125rem;
+	}
+	
+	.navbar {
+		height: 8rem;
+	}
+	
+	.navbar-brand > img {
+		display: inline;
+		width: 31.25rem;
+		height: auto;
+	}
+	
+	.navbar-nav {
+		padding-left: 1.5rem;
+	}
+}
+
+/* large devices and up */
+@media (min-width: 992px) {
+	.navbar-expand .navbar-nav .nav-link {
+		font-size: 1.25rem;
+		padding-right: 1.25rem;
+	}
+
+	.navbar {
+		height: 7rem;
+	}
+	
+	.navbar-brand > img {
+		width: 40rem;
+	}
+	
+	.navbar-nav {
+		padding-left: 2rem;
+	}
 }

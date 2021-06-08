@@ -22,7 +22,7 @@ const DisplayCard = (props) => {
 			<div style={imageStyles}>
 			</div>
 		</div>
-		<h3>{props.itemInfo.title}</h3>
+		<h4>{props.itemInfo.title}</h4>
 		<p>${props.itemInfo.price}</p>
 	</Col>
 	);
