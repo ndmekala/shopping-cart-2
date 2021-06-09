@@ -31,6 +31,8 @@ const App = () => {
 		return arr[0]
 	}
 	
+	// Okay… so it shouldn’t just have a 1-to-1 relationship between state and shop display. The shop component should display based off of *props*
+	
 	const getData = async function(pageNumber) {
 		const shopItems = await pullShopItems(pageNumber)
 		let allItemImages = [];
