@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const Welcome = () => {
 		return (
 		<div>
-			<h1>Hey!</h1>
+			<h1>Hey from Welcome!</h1>
 		</div>
 	);
 };

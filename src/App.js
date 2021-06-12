@@ -11,7 +11,6 @@ const App = () => {
 		//needs error handling
 		let response = await fetch(`https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${(pageNumber-1)*8}`)
 		const shopItems = await response.json();
-		console.log(shopItems)
 		return shopItems
 	}
 	
@@ -21,38 +20,47 @@ const App = () => {
 		const itemImages = await response.json();
 		return itemImages;
 	}
-	
-	const shopPageCount = function(shopItems) {
-		return Math.ceil(shopItems.count/8);
-	}
-	
-	const getItemImages = function(itemID, shopImages) {
-		let arr = shopImages.filter(element => Number(element.params.listing_id) === Number(itemID))
-		return arr[0]
-	}
-	
-	// Okay… so it shouldn’t just have a 1-to-1 relationship between state and shop display. The shop component should display based off of *props*
-	
-	const getData = async function(pageNumber) {
-		const shopItems = await pullShopItems(pageNumber)
-		let allItemImages = [];
-		for (const result of shopItems.results) {
-			const itemImages = await pullItemImages(result.listing_id)
-			await allItemImages.push(itemImages)
+
+	const lengthToArray = function(num) {
+		let arr = []
+		for (let i = 0; i < num; i++) {
+			arr.push(i)
 		}
-		await setDisplayedItems(shopItems);
-		await setDisplayedItemsImages(allItemImages);
-		await setDisplayedPageCount(shopPageCount(shopItems));
+		return arr
 	}
-	
-	const [displayedItems, setDisplayedItems] = useState([]);
-	const [displayedItemsImages, setDisplayedItemsImages] = useState([])
-	const [displayedPageCount, setDisplayedPageCount] = useState(0);
-	const [currentPageDisplayed, setCurrentPageDisplayed] = useState(1)
-	
+
+	// I’m not huge on allImageData…
+
+	const [pageCount, setPageCount] = useState(0);
+	const [currentPage, setCurrentPage] = useState(1);
+	const [allItemData, setAllItemData] = useState([]);
+	const [allImageData, setAllImageData] = useState([]);
+
+	const storePageData = async function (pageNumber) {
+		const pageItemData = await pullShopItems(pageNumber);
+		if (!pageCount) {
+			await setPageCount(Math.ceil(pageItemData.count/8));
+		}
+		let pageImageData = [];
+		for (const result of pageItemData.results) {
+			const imageData = await pullItemImages(result.listing_id);
+			await pageImageData.push(imageData);
+		}
+		let stateCopyItemData = allItemData;
+		let stateCopyImageData = allImageData;
+		stateCopyItemData[pageNumber-1] = await pageItemData;
+		stateCopyImageData[pageNumber-1] = await pageImageData;
+		await setAllItemData([...stateCopyItemData]);
+		await setAllImageData([...stateCopyImageData]);
+	}
+
 	useEffect(() => {
-		getData(currentPageDisplayed)
-	}, [currentPageDisplayed]);
+		storePageData(currentPage)
+	}, [currentPage])
+
+	const setPage = function (e) {
+		setCurrentPage(Number(e.target.id))
+	}
 	
 	return (
 		<BrowserRouter>
@@ -63,17 +71,23 @@ const App = () => {
 				<Link className="nav-link" to="/shop">Shop</Link>
 			</Nav>
 			</Navbar>
-			<h1>displayedItems</h1>
-			<pre>{JSON.stringify(displayedItems, null, 2)}</pre>
-			<h1>displayedItemsImages</h1>
-			<pre>{JSON.stringify(displayedItemsImages, null, 2)}</pre>
-			<h1>displayedPageCount</h1>
-			<pre>{JSON.stringify(displayedPageCount, null, 2)}</pre>
-			<h1>currentPageDisplayed</h1>
-			<pre>{JSON.stringify(currentPageDisplayed, null, 2)}</pre>
+			{/* <h1>allItemData</h1>
+			<pre>{JSON.stringify(allItemData, null, 2)}</pre>
+			<h1>allImageData</h1>
+			<pre>{JSON.stringify(allImageData, null, 2)}</pre>
+			<h1>pageCount</h1>
+			<pre>{JSON.stringify(pageCount, null, 2)}</pre>
+			<h1>currentPage</h1>
+			<pre>{JSON.stringify(currentPage, null, 2)}</pre> */}
 			<Switch>
 				<Route exact path="/" component={Welcome} />
-				<Route exact path="/shop" component={Shop} />
+				<Route path="/shop">
+					<Shop currentPage={currentPage} 
+					setPage={setPage}
+					pageCount={lengthToArray(pageCount)}
+					itemData={allItemData}
+					imageData={allImageData} />
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	);
