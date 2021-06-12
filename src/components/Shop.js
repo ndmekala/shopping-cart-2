@@ -31,7 +31,15 @@ const Shop = (props) => {
       <Switch>
         <Route exact path={path}>
           <Container style={containerStyle}>
-            <Row>
+			  <Row>
+				  {props.itemDataset[props.currentPage - 1] &&
+				  props.itemDataset[props.currentPage-1].map((item) => (
+					  <DisplayCard
+					  key={item.id}
+					  itemData={item} />
+				  ))}
+			  </Row>
+            {/* <Row>
               {props.itemData[props.currentPage - 1] &&
                 props.imageData[props.currentPage - 1] &&
                 props.itemData[props.currentPage - 1].results.map((result) => (
@@ -49,7 +57,7 @@ const Shop = (props) => {
                     <Link to={`${url}/${result.listing_id}`}>Link</Link>
                   </div>
                 ))}
-            </Row>
+            </Row> */}
             <Row>
               <Col>
                 <Pagination className="justify-content-center">

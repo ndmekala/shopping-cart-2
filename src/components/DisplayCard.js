@@ -8,22 +8,22 @@ const DisplayCard = (props) => {
 	}
 	
 	const imageStyles = {
-		width: '100%',
-		height: '0px',
-		paddingBottom: '75%',
-		backgroundImage: `url('${props.imgSource}')`,
-		backgroundRepeat: 'no-repeat',
-		backgroundSize: 'cover',
-	}
+    width: "100%",
+    height: "0px",
+    paddingBottom: "75%",
+    backgroundImage: `url('${props.itemData.imageData.results[0].url_570xN}')`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover",
+  };
 	
 	return (
 	<Col sm={12} md={6} lg={4}>
 		<div style={imageWrapperStyles}>
 			<div style={imageStyles}>
 			</div>
+			<h4>{props.itemData.title}</h4>
+			<p>{props.itemData.price}</p>
 		</div>
-		<h4>{props.itemInfo.title}</h4>
-		<p>${props.itemInfo.price}</p>
 	</Col>
 	);
 }
