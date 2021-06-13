@@ -61,7 +61,7 @@ const Shop = (props) => {
           </Container>
         </Route>
         <Route path={`${path}/:listingID`}>
-			<ItemDisplay itemDataset={props.itemDataset}/>
+			<ItemDisplay itemDataset={props.itemDataset[props.currentPage - 1]}/>
 		</Route>
       </Switch>
     </div>
