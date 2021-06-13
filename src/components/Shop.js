@@ -15,6 +15,7 @@ import {
 
 const Shop = (props) => {
   let { path, url } = useRouteMatch();
+  // I don’t NEED FIND IMAGE OBJ NO MORE!!
   const findImageObj = function (id, array) {
     let arr = array.filter(
       (element) => Number(element.params.listing_id) === Number(id)
@@ -31,33 +32,15 @@ const Shop = (props) => {
       <Switch>
         <Route exact path={path}>
           <Container style={containerStyle}>
-			  <Row>
-				  {props.itemDataset[props.currentPage - 1] &&
-				  props.itemDataset[props.currentPage-1].map((item) => (
-					  <DisplayCard
-					  key={item.id}
-					  itemData={item} />
-				  ))}
-			  </Row>
-            {/* <Row>
-              {props.itemData[props.currentPage - 1] &&
-                props.imageData[props.currentPage - 1] &&
-                props.itemData[props.currentPage - 1].results.map((result) => (
-                  <div>
-                    <DisplayCard
-                      key={result.listing_id}
-                      itemInfo={result}
-                      imgSource={
-                        findImageObj(
-                          result.listing_id,
-                          props.imageData[props.currentPage - 1]
-                        ).results[0].url_570xN
-                      }
-                    />
-                    <Link to={`${url}/${result.listing_id}`}>Link</Link>
-                  </div>
+            <Row>
+              {props.itemDataset[props.currentPage - 1] &&
+                props.itemDataset[props.currentPage - 1].map((item) => (
+                  <Col sm={12} md={6} lg={4}>
+                    <DisplayCard key={item.id} itemData={item} />
+					<p><Link to={`${url}/${item.id}`}>Check it out!</Link></p>
+                  </Col>
                 ))}
-            </Row> */}
+            </Row>
             <Row>
               <Col>
                 <Pagination className="justify-content-center">
@@ -78,13 +61,8 @@ const Shop = (props) => {
           </Container>
         </Route>
         <Route path={`${path}/:listingID`}>
-          <Container>
-            <ItemDisplay
-              itemData={props.itemData[props.currentPage - 1]}
-              imageData={props.imageData[props.currentPage - 1]}
-            />
-          </Container>
-        </Route>
+			<ItemDisplay itemDataset={props.itemDataset}/>
+		</Route>
       </Switch>
     </div>
   );

@@ -34,41 +34,15 @@ const App = () => {
     return arr;
   };
 
-  // I’m not huge on allImageData…
-
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
-  // DONT THINK I NEED YOU NO MORE
-  const [allItemData, setAllItemData] = useState([]);
-  const [allImageData, setAllImageData] = useState([]);
-
-  // NEED U THO
   const [itemDataset, setItemDataset] = useState([]);
-
-  // DONT THINK I NEED YOU NO MORE
-  const storePageData = async function (pageNumber) {
-    const pageItemData = await pullShopItems(pageNumber);
-    if (!pageCount) {
-      await setPageCount(Math.ceil(pageItemData.count / 8));
-    }
-    let pageImageData = [];
-    for (const result of pageItemData.results) {
-      const imageData = await pullItemImages(result.listing_id);
-      await pageImageData.push(imageData);
-    }
-    let stateCopyItemData = allItemData;
-    let stateCopyImageData = allImageData;
-    stateCopyItemData[pageNumber - 1] = await pageItemData;
-    stateCopyImageData[pageNumber - 1] = await pageImageData;
-    await setAllItemData([...stateCopyItemData]);
-    await setAllImageData([...stateCopyImageData]);
-  };
 
   // try this instead… 1) no need to worry about item state being “done” before image state
   // 2) easier access to data
   // 3) easier to (eventually) store globally to avoid passing down to props…
 
-  const newStorePageData = async function (pageNumber) {
+  const storePageData = async function (pageNumber) {
     if (!itemDataset[pageNumber - 1]) {
       const pageItemData = await pullShopItems(pageNumber);
       if (!pageCount) {
@@ -91,7 +65,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    newStorePageData(currentPage);
+    storePageData(currentPage);
   }, [currentPage]);
 
   const setPage = function (e) {
@@ -127,8 +101,6 @@ const App = () => {
             setPage={setPage}
             pageCount={lengthToArray(pageCount)}
 			itemDataset={itemDataset}
-            itemData={allItemData}
-            imageData={allImageData}
           />
         </Route>
       </Switch>

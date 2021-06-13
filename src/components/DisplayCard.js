@@ -17,14 +17,12 @@ const DisplayCard = (props) => {
   };
 	
 	return (
-	<Col sm={12} md={6} lg={4}>
 		<div style={imageWrapperStyles}>
 			<div style={imageStyles}>
 			</div>
 			<h4>{props.itemData.title}</h4>
 			<p>{props.itemData.price}</p>
 		</div>
-	</Col>
 	);
 }
 
