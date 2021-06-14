@@ -16,13 +16,6 @@ import {
 
 const Shop = (props) => {
   let { path, url } = useRouteMatch();
-  // I don’t NEED FIND IMAGE OBJ NO MORE!!
-  const findImageObj = function (id, array) {
-    let arr = array.filter(
-      (element) => Number(element.params.listing_id) === Number(id)
-    );
-    return arr[0];
-  };
 
   const containerStyle = {
     paddingTop: "1rem",
@@ -42,7 +35,9 @@ const Shop = (props) => {
                       <Link to={`${url}/${item.id}`}>
                         <Button>Check it out!</Button>
                       </Link>
-                      <Button id={item.id} onClick={props.addToCart}>Add to Cart</Button>
+                      <Button id={item.id} onClick={props.addToCart}>
+                        Add to Cart
+                      </Button>
                     </p>
                   </Col>
                 ))}

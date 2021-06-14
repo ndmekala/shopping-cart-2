@@ -82,7 +82,7 @@ const App = () => {
 
   const addToCart = function (e) {
     let stateCopy = shoppingCart;
-    stateCopy.push(e.target.id)
+    stateCopy.push(e.target.id);
     setShoppingCart([...stateCopy])
   }
 
@@ -132,7 +132,8 @@ const App = () => {
           />
         </Route>
         <Route path="/cart">
-          <Cart shoppingCart={shoppingCart}/>
+          <Cart shoppingCart={shoppingCart}
+          itemDataset={itemDataset}/>
         </Route>
       </Switch>
     </BrowserRouter>
