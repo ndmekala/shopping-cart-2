@@ -20,7 +20,7 @@ const DisplayCard = (props) => {
 		<div style={imageWrapperStyles}>
 			<div style={imageStyles}>
 			</div>
-			<h4>{props.itemData.title}</h4>
+			<h4 dangerouslySetInnerHTML={{__html: props.itemData.title}}/>
 			<p>{props.itemData.price}</p>
 		</div>
 	);

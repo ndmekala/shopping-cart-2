@@ -17,12 +17,12 @@ const ItemDisplay = (props) => {
 	
 	return (
 		<Container >
-	<h1>{itemData.title}</h1>
+	<h1 dangerouslySetInnerHTML={{__html: itemData.title}}/>
 	{itemData.imageData.results.map((imgResult) => (
 		<img src={imgResult.url_570xN}/>
 		
 	))}
-	<p>{itemData.description}</p>
+	<p dangerouslySetInnerHTML={{__html: itemData.description}}/>
 	<p>{itemData.price}</p>
 		</Container>
 	
