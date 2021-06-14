@@ -5,6 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
+import Button from "react-bootstrap/Button"
 import {
   BrowserRouter,
   Route,
@@ -37,7 +38,12 @@ const Shop = (props) => {
                 props.itemDataset[props.currentPage - 1].map((item) => (
                   <Col sm={12} md={6} lg={4}>
                     <DisplayCard key={item.id} itemData={item} />
-					<p><Link to={`${url}/${item.id}`}>Check it out!</Link></p>
+                    <p>
+                      <Link to={`${url}/${item.id}`}>
+                        <Button>Check it out!</Button>
+                      </Link>
+                      <Button id={item.id} onClick={props.addToCart}>Add to Cart</Button>
+                    </p>
                   </Col>
                 ))}
             </Row>
@@ -61,8 +67,11 @@ const Shop = (props) => {
           </Container>
         </Route>
         <Route path={`${path}/:listingID`}>
-			<ItemDisplay itemDataset={props.itemDataset[props.currentPage - 1]}/>
-		</Route>
+          <ItemDisplay
+            addToCart={props.addToCart}
+            itemDataset={props.itemDataset[props.currentPage - 1]}
+          />
+        </Route>
       </Switch>
     </div>
   );

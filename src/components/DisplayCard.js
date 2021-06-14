@@ -21,7 +21,7 @@ const DisplayCard = (props) => {
 			<div style={imageStyles}>
 			</div>
 			<h4 dangerouslySetInnerHTML={{__html: props.itemData.title}}/>
-			<p>{props.itemData.price}</p>
+			<p>${props.itemData.price}</p>
 		</div>
 	);
 }

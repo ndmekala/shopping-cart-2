@@ -1,5 +1,12 @@
+:root {
+	--popstar: #CA4C69ff;
+	--dark-sienna: #420711ff;
+	--davys-grey: #4B5358ff;
+	--pale-silver: #C4B6A5ff;
+}
+
 body {
-	color: darkslategrey;
+	color: var(--davys-grey);
 	font-family: 'Oxygen', sans-serif;
 }
 
@@ -8,8 +15,7 @@ body {
 }
 
 .navbar-brand {
-	transform: translateX(-50%);
-	left: 50%;
+	right: 0;
 	position: absolute;
 }
 
@@ -24,6 +30,11 @@ body {
 
 .navbar-brand > img {
 	display: none;
+}
+
+.jumbotron {
+	background-image: url(https://cdn.shopify.com/s/files/1/1384/6395/files/Burrito_Supreme_Grey_gravel_2000x.jpg?v=1603389036);
+	height: 1000px;
 }
 
 /* small devices and up */
@@ -66,9 +77,9 @@ body {
 	.navbar {
 		height: 7rem;
 	}
-	
+
 	.navbar-brand > img {
-		width: 40rem;
+		width: 38rem;
 	}
 	
 	.navbar-nav {

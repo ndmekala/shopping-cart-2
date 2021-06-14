@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Shop from "./components/Shop.js";
 import Welcome from "./components/Welcome.js";
+import Cart from "./components/Cart.js";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
@@ -37,11 +38,18 @@ const App = () => {
   const [pageCount, setPageCount] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemDataset, setItemDataset] = useState([]);
+  const [shoppingCart, setShoppingCart] = useState([]);
 
   // try this instead… 1) no need to worry about item state being “done” before image state
   // 2) easier access to data
   // 3) easier to (eventually) store globally to avoid passing down to props…
 
+
+  // realistically, however, this shoudl go to something like this:
+  // item Data array - each element is a page
+  // page array --> each element is an item object
+  // item object --> {listingID: {title: 'blah', imageData: {…}, description: 'blah'}}
+  // KEY IT by LISTING ID
   const storePageData = async function (pageNumber) {
     if (!itemDataset[pageNumber - 1]) {
       const pageItemData = await pullShopItems(pageNumber);
@@ -72,6 +80,26 @@ const App = () => {
     setCurrentPage(Number(e.target.id));
   };
 
+  const addToCart = function (e) {
+    let stateCopy = shoppingCart;
+    stateCopy.push(e.target.id)
+    setShoppingCart([...stateCopy])
+  }
+
+  const cartCountStyles = {
+    display: 'inline-block',
+    position: 'relative',
+    height: '1.5rem',
+    width: '1.5rem',
+    borderRadius: '2rem',
+    top: '-1rem',
+    backgroundColor: 'var(--popstar)',
+    color: 'var(--pale-silver)',
+    paddingTop: '0.25rem',
+    paddingLeft: '0.5625rem',
+    fontSize: '0.75rem',
+  }
+
   return (
     <BrowserRouter>
       <Navbar bg="light" sticky="top" variant="light">
@@ -85,14 +113,13 @@ const App = () => {
           <Link className="nav-link" to="/shop">
             Shop
           </Link>
+          <a href="https://www.github.com/ndmekala/shopping-cart-2" className="nav-link">Repository</a>
+          <a href="https://www.meka.la/" className="nav-link">Portfolio</a>
+          <Link className="nav-link" to="/cart">
+            Cart <div style={cartCountStyles}>{shoppingCart.length}</div>
+          </Link>
         </Nav>
       </Navbar>
-      {/* <h1>itemDataset</h1>
-	  <pre>{JSON.stringify(itemDataset, null, 2)}</pre>
-      <h1>pageCount</h1>
-      <pre>{JSON.stringify(pageCount, null, 2)}</pre>
-      <h1>currentPage</h1>
-      <pre>{JSON.stringify(currentPage, null, 2)}</pre> */}
       <Switch>
         <Route exact path="/" component={Welcome} />
         <Route path="/shop">
@@ -100,8 +127,12 @@ const App = () => {
             currentPage={currentPage}
             setPage={setPage}
             pageCount={lengthToArray(pageCount)}
-			itemDataset={itemDataset}
+            itemDataset={itemDataset}
+            addToCart={addToCart}
           />
+        </Route>
+        <Route path="/cart">
+          <Cart shoppingCart={shoppingCart}/>
         </Route>
       </Switch>
     </BrowserRouter>

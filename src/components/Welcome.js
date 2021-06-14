@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
+import Jumbotron from 'react-bootstrap/Jumbotron'
 
 const Welcome = () => {
 		return (
-		<div>
+		<Jumbotron fluid>
 			<h1>Hey from Welcome!</h1>
-		</div>
+		</Jumbotron>
 	);
 };
 
