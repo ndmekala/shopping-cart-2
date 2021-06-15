@@ -46,15 +46,17 @@ const Cart = (props) => {
             {removeDuplicates(props.shoppingCart).map((itemID) => (
                 <li>{findItemObject(itemID)[0].title}
                     <ul>
-                    <li>{countItem(itemID)}</li>
                     <li>{findItemObject(itemID)[0].id}</li>
                     <li>{findItemObject(itemID)[0].price}</li>
+                    <li>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>{countItem(itemID)}<Button id={itemID} onClick={props.addToCart}>+</Button></li>
+                    <li><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></li>
+                    {/* a delete from cart… */}
                   </ul>
                 </li>
             ))}
           </ul>
-          <h1>Total: {calculateTotal(props.shoppingCart)}</h1>
-          <Button>Checkout</Button>
+          <h1>Subtotal: {calculateTotal(props.shoppingCart)}</h1>
+          <Button>Proceed to Checkout</Button>
         </Col>
       </Row>
     </Container>

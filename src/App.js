@@ -86,6 +86,22 @@ const App = () => {
     setShoppingCart([...stateCopy])
   }
 
+  const reduceQuantity = function (e) {
+    let id = e.target.id.replace("-reduceQuantity", "");
+    if (shoppingCart.indexOf(id) !== shoppingCart.lastIndexOf(id)) {
+      let stateCopy = shoppingCart
+      stateCopy.splice(stateCopy.indexOf(id), 1)
+      setShoppingCart([...stateCopy])
+    }
+  }
+
+  const remove = function (e) {
+    let id = e.target.id.replace("-remove", "");
+    let stateCopy = shoppingCart.filter((element) => element !== id);
+    console.log(stateCopy);
+    setShoppingCart([...stateCopy]);
+  }
+
   const cartCountStyles = {
     display: 'inline-block',
     position: 'relative',
@@ -133,7 +149,10 @@ const App = () => {
         </Route>
         <Route path="/cart">
           <Cart shoppingCart={shoppingCart}
-          itemDataset={itemDataset}/>
+          itemDataset={itemDataset}
+          addToCart={addToCart}
+          reduceQuantity={reduceQuantity}
+          remove={remove}/>
         </Route>
       </Switch>
     </BrowserRouter>
