@@ -26,6 +26,7 @@ const Shop = (props) => {
       <Switch>
         <Route exact path={path}>
           <Container style={containerStyle}>
+            <h1>All Items</h1>
             <Row>
               {props.itemDataset[props.currentPage - 1] &&
                 props.itemDataset[props.currentPage - 1].map((item) => (
