@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
-import Button from "react-bootstrap/Button"
+import Button from "react-bootstrap/Button";
 import {
   BrowserRouter,
   Route,
@@ -21,6 +21,11 @@ const Shop = (props) => {
     paddingTop: "1rem",
   };
 
+  const quickAddStyles = {
+    width: '100%',
+    margin: '5px 0',
+  }
+
   return (
     <div>
       <Switch>
@@ -31,15 +36,24 @@ const Shop = (props) => {
               {props.itemDataset[props.currentPage - 1] &&
                 props.itemDataset[props.currentPage - 1].map((item) => (
                   <Col sm={12} md={6} lg={4}>
-                    <DisplayCard key={item.id} itemData={item} />
-                    <p>
+                    <Link to={`${url}/${item.id}`}>
+                      <DisplayCard key={item.id} itemData={item} />
+                    </Link>
+                    <Button style={quickAddStyles} onClick={props.addToCart}>Quick Add</Button>
+                    <Link to={`${url}/${item.id}`}>
+                    <p>{item.title}</p>
+                    <p>${item.price}</p>
+                    </Link>
+                    
+                    {/* <p>
+                      {item.title}
                       <Link to={`${url}/${item.id}`}>
                         <Button>Check it out!</Button>
                       </Link>
                       <Button id={item.id} onClick={props.addToCart}>
                         Add to Cart
                       </Button>
-                    </p>
+                    </p> */}
                   </Col>
                 ))}
             </Row>

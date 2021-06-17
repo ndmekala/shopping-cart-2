@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 const DisplayCard = (props) => {
   const imageWrapperStyles = {
@@ -24,15 +24,40 @@ const DisplayCard = (props) => {
     backgroundSize: "cover",
   }
 
+  const buttonStyleDefault = {
+    display: 'inline',
+    top: '0px',
+    color: 'pink',
+
+
+  }
+
+  const buttonStyleHover = {
+
+  }
+
+  const handleButton = function (e) {
+    console.log('hi');
+  }
+
+  const stylez = {
+    position: 'relative',
+    top: '-100px',
+
+  }
+
+
   const [imageStyle, setImageStyle] = useState(imageStyleDefault)
+  const [buttonStyle, setButtonStyle] = useState(buttonStyleDefault)
 
   return (
     <div style={imageWrapperStyles} >
       <div style={imageStyle}
       onMouseEnter={() => {setImageStyle(imageStyleHover)}}
-      onMouseLeave={() => {setImageStyle(imageStyleDefault)}}></div>
-      <h4 dangerouslySetInnerHTML={{ __html: props.itemData.title }} />
-      <p>${props.itemData.price}</p>
+      onMouseLeave={() => {setImageStyle(imageStyleDefault)}}>
+      </div>
+      {/* <h4 dangerouslySetInnerHTML={{ __html: props.itemData.title }} /> */}
+      {/* <p>${props.itemData.price}</p> */}
     </div>
   );
 };
