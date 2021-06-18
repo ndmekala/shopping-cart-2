@@ -129,8 +129,8 @@ const App = () => {
           <Link className="nav-link" to="/shop">
             Shop
           </Link>
-          <a href="https://www.github.com/ndmekala/shopping-cart-2" className="nav-link">Repository</a>
-          <a href="https://www.meka.la/" className="nav-link">Portfolio</a>
+          {/*<a href="https://www.github.com/ndmekala/shopping-cart-2" className="nav-link">Repository</a>
+          <a href="https://www.meka.la/" className="nav-link">Portfolio</a>*/}
           <Link className="nav-link" to="/cart">
             Cart <div style={cartCountStyles}>{shoppingCart.length}</div>
           </Link>

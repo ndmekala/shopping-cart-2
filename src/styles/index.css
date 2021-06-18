@@ -1,6 +1,7 @@
 :root {
 	--popstar: #CA4C69ff;
 	--dark-sienna: #420711ff;
+	--dark-sienna-trans: #f9d2d8;
 	--davys-grey: #4B5358ff;
 	--pale-silver: #C4B6A5ff;
 }
@@ -8,6 +9,59 @@
 body {
 	color: var(--davys-grey);
 	font-family: 'Oxygen', sans-serif;
+}
+
+h1 {
+	font-size: 3rem;
+	font-weight: 600;
+	margin-top: 1rem;
+	margin-bottom: 0.75rem;
+	color: var(--popstar)
+}
+
+/*medium devices and up*/
+@media (min-width: 768px){
+	h1 {
+		font-size: 4rem;
+	}
+}
+
+.shop-hero {
+	background-image: url(https://cdn.shopify.com/s/files/1/1384/6395/files/Burrito_Supreme_Grey_gravel_2000x.jpg?v=1603389036);
+	height: 10rem;
+	background-size: cover;
+	background-position: bottom;
+}
+
+@media (min-width:768px) {
+	.shop-hero {
+		height: 18.75rem;
+	}
+}
+
+.welcome-hero {
+	background-image: url(https://cdn.shopify.com/s/files/1/1384/6395/files/Burrito_Supreme_Grey_gravel_2000x.jpg?v=1603389036);
+	height: 200px;
+	background-size: 800px auto;
+	background-position: center -250px;
+	background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+	.welcome-hero {
+		height: 300px;
+		background-size: 1100px auto;
+		background-position: center -300px;
+	}
+
+}
+	
+@media (min-width: 992px) {
+	.welcome-hero {
+		height: 500px;
+		background-size: 1400px auto;
+		background-position: center -400px;	
+	}
 }
 
 .sr-only {
@@ -30,11 +84,6 @@ body {
 
 .navbar-brand > img {
 	display: none;
-}
-
-.jumbotron {
-	background-image: url(https://cdn.shopify.com/s/files/1/1384/6395/files/Burrito_Supreme_Grey_gravel_2000x.jpg?v=1603389036);
-	height: 1000px;
 }
 
 /* small devices and up */
@@ -65,6 +114,46 @@ body {
 	.navbar-nav {
 		padding-left: 1.5rem;
 	}
+}
+
+.btn-primary {
+	background-color: var(--pale-silver);
+	border-color: var(--pale-silver);
+}
+
+.btn-primary:hover, .btn-primary:focus {
+	background-color: var(--dark-sienna);
+	border-color: var(--dark-sienna);
+}
+
+.btn:focus {
+	box-shadow: 0 0 0 0.25rem var(--dark-sienna-trans);
+}
+
+a, a:visited, a:hover {
+	text-decoration: none;
+	color: var(--davys-grey)
+}
+
+a:hover {
+	color: var(--dark-sienna)
+}
+
+.page-link {
+	color: var(--davys-grey)
+}
+
+.page-link:hover {
+	color: var(--dark-sienna);
+}
+
+.page-item.active .page-link {
+	background-color: var(--dark-sienna);
+	border-color: var(--dark-sienna);
+}
+
+a p {
+	margin: 0;
 }
 
 /* large devices and up */

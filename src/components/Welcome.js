@@ -3,9 +3,11 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 
 const Welcome = () => {
 		return (
-      <Jumbotron fluid>
-        <h1>Hey from Welcome!</h1>
-      </Jumbotron>
+      <div>
+        <Jumbotron className="welcome-hero" fluid>
+        </Jumbotron>
+      </div>
+      
     );
 };
 

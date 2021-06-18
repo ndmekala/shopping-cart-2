@@ -5,11 +5,12 @@ import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 
 const Cart = (props) => {
+
   const findItemObject = function (id) {
     let arr = [];
     let i = 0;
     while (!arr[0]) {
-      arr = props.itemDataset[i].filter((element) => element.id == id);
+      arr = props.itemDataset[i].filter((element) => element.id == id)
       i++;
     }
     return arr;
@@ -27,6 +28,7 @@ const Cart = (props) => {
         arr.push(element);
       }
     });
+    arr.sort();
     return arr;
   };
 
@@ -42,21 +44,23 @@ const Cart = (props) => {
     <Container>
       <Row>
         <Col xs={{ span: 12 }} md={{ span: 8, offset: 2 }}>
-          <ul>
             {removeDuplicates(props.shoppingCart).map((itemID) => (
-                <li>{findItemObject(itemID)[0].title}
-                    <ul>
-                    <li>{findItemObject(itemID)[0].id}</li>
-                    <li>{findItemObject(itemID)[0].price}</li>
-                    <li>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>{countItem(itemID)}<Button id={itemID} onClick={props.addToCart}>+</Button></li>
-                    <li><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></li>
-                    {/* a delete from cart… */}
-                  </ul>
-                </li>
+              <Row>
+                <Col sm={12} md={4}>
+                <img style={{width: '100%'}} src={findItemObject(itemID)[0].imageData.results[0].url_570xN} />
+                </Col>
+                <Col sm={12} md={8}>
+                <p dangerouslySetInnerHTML={{ __html: findItemObject(itemID)[0].title }}></p>
+                <p>{findItemObject(itemID)[0].price}</p>
+                <p>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>
+                {countItem(itemID)}
+                <Button id={itemID} onClick={props.addToCart}>+</Button></p>
+                <p><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></p>
+                </Col>
+              </Row>
             ))}
-          </ul>
-          <h1>Subtotal: {calculateTotal(props.shoppingCart)}</h1>
-          <Button>Proceed to Checkout</Button>
+          <h1>Subtotal: ${calculateTotal(props.shoppingCart)}</h1>
+          <Button style={{width: '100%'}}>Proceed to Checkout</Button>
         </Col>
       </Row>
     </Container>
@@ -64,3 +68,13 @@ const Cart = (props) => {
 };
 
 export default Cart;
+
+// <div>{findItemObject(itemID, props.itemDataset)[0].title}
+// <ul>
+// <li>{findItemObject(itemID, props.itemDataset)[0].i}</li>
+// <li>{findItemObject(itemID, props.itemDataset)[0].price}</li>
+// <li>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>{countItem(itemID)}<Button id={itemID} onClick={props.addToCart}>+</Button></li>
+// <li><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></li>
+// 🗑
+// </ul>
+// </div>  */}

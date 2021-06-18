@@ -6,6 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
+import Jumbotron from "react-bootstrap/Jumbotron";
 import {
   BrowserRouter,
   Route,
@@ -26,11 +27,30 @@ const Shop = (props) => {
     margin: '5px 0',
   }
 
+  const smallParaStyle = {
+    fontSize: '0.875rem',
+  }
+
+  const itemInfoStyle = {
+    height: '2rem',
+    width: '100%',
+    marginBottom: '1rem',
+  }
+
+  if (!props.itemDataset[props.currentPage - 1]) {
+    return (
+      <div>
+        Loading!
+      </div>
+    )
+  }
+
   return (
     <div>
       <Switch>
         <Route exact path={path}>
           <Container style={containerStyle}>
+            <Jumbotron className="shop-hero" fluid></Jumbotron>
             <h1>All Items</h1>
             <Row>
               {props.itemDataset[props.currentPage - 1] &&
@@ -39,11 +59,12 @@ const Shop = (props) => {
                     <Link to={`${url}/${item.id}`}>
                       <DisplayCard key={item.id} itemData={item} />
                     </Link>
-                    <Button style={quickAddStyles} onClick={props.addToCart}>Quick Add</Button>
+                    <Button style={quickAddStyles} id={item.id} onClick={props.addToCart}>Quick Add</Button>
+                    <div style={itemInfoStyle}>
                     <Link to={`${url}/${item.id}`}>
-                    <p>{item.title}</p>
-                    <p>${item.price}</p>
+                    <p style={smallParaStyle} dangerouslySetInnerHTML={{ __html: `${item.title} | $${item.price}` }}></p>
                     </Link>
+                    </div>
                     
                     {/* <p>
                       {item.title}
