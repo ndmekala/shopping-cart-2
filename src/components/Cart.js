@@ -40,16 +40,29 @@ const Cart = (props) => {
     return sum
   }
 
+  const imageStyles = {
+    width: '100%',
+    height: '0',
+    paddingBottom: '75%',
+  }
+
   return (
     <Container>
       <Row>
         <Col xs={12} md={8}>
           {removeDuplicates(props.shoppingCart).map((itemID) => (
             <Row>
-              <Col sm={12} md={4}>
-                <img style={{ width: '100%' }} src={findItemObject(itemID)[0].imageData.results[0].url_570xN} />
+              <Col sm={12} md={6} lg={4}>
+                <div style={{
+                  width: '100%',
+                  height: '0px',
+                  paddingBottom: '75%',
+                  backgroundImage: `url(${findItemObject(itemID)[0].imageData.results[0].url_570xN})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover',
+                }}></div>
               </Col>
-              <Col sm={12} md={8}>
+              <Col sm={12} md={6} lg={8}>
                 <p dangerouslySetInnerHTML={{ __html: findItemObject(itemID)[0].title }}></p>
                 <p>{findItemObject(itemID)[0].price}</p>
                 <p>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>
