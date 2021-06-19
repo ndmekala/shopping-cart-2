@@ -35,7 +35,7 @@ const Cart = (props) => {
   const calculateTotal = function (array) {
     let sum = 0
     array.forEach((element) => {
-        sum += Number(findItemObject(element)[0].price)
+      sum += Number(findItemObject(element)[0].price)
     })
     return sum
   }
@@ -43,24 +43,26 @@ const Cart = (props) => {
   return (
     <Container>
       <Row>
-        <Col xs={{ span: 12 }} md={{ span: 8, offset: 2 }}>
-            {removeDuplicates(props.shoppingCart).map((itemID) => (
-              <Row>
-                <Col sm={12} md={4}>
-                <img style={{width: '100%'}} src={findItemObject(itemID)[0].imageData.results[0].url_570xN} />
-                </Col>
-                <Col sm={12} md={8}>
+        <Col xs={12} md={8}>
+          {removeDuplicates(props.shoppingCart).map((itemID) => (
+            <Row>
+              <Col sm={12} md={4}>
+                <img style={{ width: '100%' }} src={findItemObject(itemID)[0].imageData.results[0].url_570xN} />
+              </Col>
+              <Col sm={12} md={8}>
                 <p dangerouslySetInnerHTML={{ __html: findItemObject(itemID)[0].title }}></p>
                 <p>{findItemObject(itemID)[0].price}</p>
                 <p>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>
-                {countItem(itemID)}
-                <Button id={itemID} onClick={props.addToCart}>+</Button></p>
+                  {countItem(itemID)}
+                  <Button id={itemID} onClick={props.addToCart}>+</Button></p>
                 <p><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></p>
-                </Col>
-              </Row>
-            ))}
+              </Col>
+            </Row>
+          ))}
+        </Col>
+        <Col xs={12} md={4}>
           <h1>Subtotal: ${calculateTotal(props.shoppingCart)}</h1>
-          <Button style={{width: '100%'}}>Proceed to Checkout</Button>
+          <Button style={{ width: '100%' }}>Proceed to Checkout</Button>
         </Col>
       </Row>
     </Container>
