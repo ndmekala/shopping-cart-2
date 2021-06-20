@@ -67,8 +67,8 @@ const Cart = (props) => {
                 <p>{findItemObject(itemID)[0].price}</p>
                 <p>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>
                   {countItem(itemID)}
-                  <Button id={itemID} onClick={props.addToCart}>+</Button></p>
-                <p><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></p>
+                  <Button id={itemID} onClick={props.addToCart}>+</Button>
+                <Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></p>
               </Col>
             </Row>
           ))}
