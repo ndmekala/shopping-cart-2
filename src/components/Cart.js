@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import { globals } from "../scripts/globals.js"
 
 const Cart = (props) => {
 
@@ -46,12 +47,16 @@ const Cart = (props) => {
     paddingBottom: '75%',
   }
 
+  const paragraphStyles = {
+    marginBottom: '0.125rem',
+  }
+
   return (
     <Container>
       <Row>
         <Col xs={12} md={8}>
           {removeDuplicates(props.shoppingCart).map((itemID) => (
-            <Row>
+            <Row style={{ marginTop: '1rem' }}>
               <Col sm={12} md={6} lg={4}>
                 <div style={{
                   width: '100%',
@@ -62,20 +67,22 @@ const Cart = (props) => {
                   backgroundSize: 'cover',
                 }}></div>
               </Col>
-              <Col sm={12} md={6} lg={8}>
-                <p dangerouslySetInnerHTML={{ __html: findItemObject(itemID)[0].title }}></p>
-                <p>{findItemObject(itemID)[0].price}</p>
-                <p>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>
+              <Col className="cart-info" sm={12} md={6} lg={8}>
+                <p dangerouslySetInnerHTML={{ __html: globals.shortenTitle(findItemObject(itemID)[0].title) }}></p>
+                <p>${findItemObject(itemID)[0].price}</p>
+                <p><div className="cart-quantity-selectors"><Button variant="outline-primary" id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>–</Button>
                   {countItem(itemID)}
-                  <Button id={itemID} onClick={props.addToCart}>+</Button>
-                <Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></p>
+                  <Button variant="outline-primary" id={itemID} onClick={props.addToCart}>＋</Button></div>
+                  <Button variant="outline-primary" className="cart-remove-btn" id={itemID + "-remove"} onClick={props.remove}>X</Button></p>
               </Col>
             </Row>
           ))}
         </Col>
         <Col xs={12} md={4}>
-          <h1>Subtotal: ${calculateTotal(props.shoppingCart)}</h1>
-          <Button style={{ width: '100%' }}>Proceed to Checkout</Button>
+          <div style={{marginTop: '1rem'}}>
+            <p style={{fontSize: '2rem'}}>Subtotal: ${calculateTotal(props.shoppingCart)}</p>
+            <Button style={{ width: '100%' }} onClick={() => {alert('This is just a dummy link for now!')}}>Proceed to Checkout</Button>
+          </div>
         </Col>
       </Row>
     </Container>
@@ -83,13 +90,3 @@ const Cart = (props) => {
 };
 
 export default Cart;
-
-// <div>{findItemObject(itemID, props.itemDataset)[0].title}
-// <ul>
-// <li>{findItemObject(itemID, props.itemDataset)[0].i}</li>
-// <li>{findItemObject(itemID, props.itemDataset)[0].price}</li>
-// <li>Quantity: <Button id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>-</Button>{countItem(itemID)}<Button id={itemID} onClick={props.addToCart}>+</Button></li>
-// <li><Button id={itemID + "-remove"} onClick={props.remove}>Remove</Button></li>
-// 🗑
-// </ul>
-// </div>  */}

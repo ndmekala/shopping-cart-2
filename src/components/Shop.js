@@ -7,6 +7,7 @@ import Col from "react-bootstrap/Col";
 import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
+import { globals } from '../scripts/globals.js'
 import {
   BrowserRouter,
   Route,
@@ -25,10 +26,6 @@ const Shop = (props) => {
   const quickAddStyles = {
     width: '100%',
     margin: '5px 0',
-  }
-
-  const smallParaStyle = {
-    fontSize: '0.875rem',
   }
 
   const itemInfoStyle = {
@@ -62,19 +59,9 @@ const Shop = (props) => {
                     <Button style={quickAddStyles} id={item.id} onClick={props.addToCart}>Quick Add</Button>
                     <div style={itemInfoStyle}>
                     <Link to={`${url}/${item.id}`}>
-                    <p style={smallParaStyle} dangerouslySetInnerHTML={{ __html: `${item.title} | $${item.price}` }}></p>
+                    <p dangerouslySetInnerHTML={{ __html: `${globals.shortenTitle(item.title)} | $${item.price}` }}></p>
                     </Link>
                     </div>
-                    
-                    {/* <p>
-                      {item.title}
-                      <Link to={`${url}/${item.id}`}>
-                        <Button>Check it out!</Button>
-                      </Link>
-                      <Button id={item.id} onClick={props.addToCart}>
-                        Add to Cart
-                      </Button>
-                    </p> */}
                   </Col>
                 ))}
             </Row>
