@@ -213,3 +213,7 @@ a p {
 	border: 1px solid var(--pale-silver);
 	border-radius: 0.25rem;
 }
+
+.item-display-header {
+	font-size: 2rem;
+}
