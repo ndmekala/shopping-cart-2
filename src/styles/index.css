@@ -45,6 +45,7 @@ h1 {
 	background-size: 800px auto;
 	background-position: center -250px;
 	background-repeat: no-repeat;
+	margin-bottom: 1rem;
 }
 
 @media (min-width: 768px) {
@@ -59,7 +60,7 @@ h1 {
 @media (min-width: 992px) {
 	.welcome-hero {
 		height: 500px;
-		background-size: 1400px auto;
+		background-size: 1296px auto;
 		background-position: center -400px;	
 	}
 }
