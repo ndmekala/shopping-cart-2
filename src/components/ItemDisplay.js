@@ -12,7 +12,10 @@ const ItemDisplay = (props) => {
   let itemData
 
   const [imageNumber, setImageNumber] = useState(0)
-
+  const columnStyles = {
+    overflowWrap: 'break-word',
+    wordWrap: 'break-word',
+  }
   const findData = function () {
     let arr = props.itemDataset.filter(element => element.id == listingID)
     itemData = arr[0]
@@ -23,10 +26,13 @@ const ItemDisplay = (props) => {
   return (
     <Container style={{marginTop: '1rem'}}>
       <Row>
-        <Col>
+        <Col style={{marginBottom: '1rem'}} lg={12} xl={6}>
           <Row>
             <Col >
-              <img src={itemData.imageData.results[imageNumber].url_570xN}></img>
+              <img
+               src={itemData.imageData.results[imageNumber].url_570xN}
+               alt={itemData.title}
+               style={{width: '100%'}} />
             </Col>
           </Row>
           <Row style={{marginTop: '1rem'}}>
@@ -34,17 +40,22 @@ const ItemDisplay = (props) => {
               <Col xs={4} sm={3} md={2} lg={2}>
                 <img className="d-block w-100"
                   src={imgResult.url_570xN}
+                  alt={itemData.title}
+                  style={{
+                    marginTop: '0.25rem',
+                  }}
                   onClick={() => { setImageNumber(itemData.imageData.results.indexOf(imgResult)) }} />
               </Col>
             ))}
           </Row>
         </Col>
-        <Col>
+        <Col lg={12} xl={6}>
           <Row>
-            <Col>
+            <Col style={columnStyles}>
               <h1 className="item-display-header" dangerouslySetInnerHTML={{ __html: itemData.title }} />
               <Button style={{marginBottom: '1rem'}} id={listingID} onClick={props.addToCart}>Add to Cart</Button>
               <p>${itemData.price}</p>
+              <h2 className="item-display-subheader">Description</h2>
               <p dangerouslySetInnerHTML={{ __html: itemData.description }} />
             </Col>
           </Row>

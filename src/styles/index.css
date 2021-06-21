@@ -216,4 +216,9 @@ a p {
 
 .item-display-header {
 	font-size: 2rem;
+	margin-top: 0;
+}
+
+.item-display-subheader {
+	font-size: 1.75rem;
 }
