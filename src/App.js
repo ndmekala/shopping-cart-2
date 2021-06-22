@@ -8,23 +8,30 @@ import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
 
 const App = () => {
   const pullShopItems = async function (pageNumber) {
-    //needs error handling
-    let response = await fetch(
-      `https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${
-        (pageNumber - 1) * 8
-      }`
-    );
-    const shopItems = await response.json();
-    return shopItems;
+    try {
+      let response = await fetch(
+        `https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${
+          (pageNumber - 1) * 8
+        }`
+      );
+      const shopItems = await response.json();
+      return shopItems;
+    } catch(err) {
+      console.log(err)
+    }
   };
 
   const pullItemImages = async function (itemID) {
-    // needs error handling
-    const response = await fetch(
-      `https://shielded-peak-43727.herokuapp.com/etsy/listings/${itemID}/images`
-    );
-    const itemImages = await response.json();
-    return itemImages;
+    try {
+      const response = await fetch(
+        `https://shielded-peak-43727.herokuapp.com/etsy/listings/${itemID}/images`
+      );
+      const itemImages = await response.json();
+      return itemImages;
+    } catch(err) {
+      console.log(err)
+    }
+    
   };
 
   const lengthToArray = function (num) {
