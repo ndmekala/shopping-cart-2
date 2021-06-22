@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import Button from "react-bootstrap/Button";
+import React, { useState} from "react";
 
 const DisplayCard = (props) => {
   const imageWrapperStyles = {
@@ -26,11 +25,19 @@ const DisplayCard = (props) => {
 
   const [imageStyle, setImageStyle] = useState(imageStyleDefault)
 
+  const hover = function () {
+    setImageStyle(imageStyleHover)
+  }
+
+  const removeHover = function () {
+    setImageStyle(imageStyleDefault)
+  }
+
   return (
     <div style={imageWrapperStyles} >
       <div style={imageStyle}
-        onMouseEnter={() => { setImageStyle(imageStyleHover) }}
-        onMouseLeave={() => { setImageStyle(imageStyleDefault) }}>
+        onMouseEnter={hover}
+        onMouseLeave={removeHover}>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React from "react"
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -41,14 +41,20 @@ const Cart = (props) => {
     return sum
   }
 
-  const imageStyles = {
-    width: '100%',
-    height: '0',
-    paddingBottom: '75%',
-  }
-
   const paragraphStyles = {
     marginBottom: '0.125rem',
+  }
+
+  const cartRemoveButtonStyles = {
+    position: 'absolute',
+	  top: '0',
+	  right: 'calc(var(--bs-gutter-x)/ 2)',
+  }
+
+  const cartQuantitySelectorStyles = {
+    display: 'inline-block',
+	  border: '1px solid var(--pale-silver)',
+	  borderRadius: '0.25rem',
   }
 
   return (
@@ -68,12 +74,12 @@ const Cart = (props) => {
                 }}></div>
               </Col>
               <Col className="cart-info" sm={12} md={6} lg={8}>
-                <p dangerouslySetInnerHTML={{ __html: globals.shortenTitle(findItemObject(itemID)[0].title) }}></p>
-                <p>${findItemObject(itemID)[0].price}</p>
-                <p><div className="cart-quantity-selectors"><Button variant="outline-primary" id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>–</Button>
+                <p style={paragraphStyles} dangerouslySetInnerHTML={{ __html: globals.shortenTitle(findItemObject(itemID)[0].title) }}></p>
+                <p style={paragraphStyles}>${findItemObject(itemID)[0].price}</p>
+                <p style={paragraphStyles}><div style={cartQuantitySelectorStyles}><Button variant="outline-primary" id={itemID + "-reduceQuantity"} onClick={props.reduceQuantity}>–</Button>
                   {countItem(itemID)}
                   <Button variant="outline-primary" id={itemID} onClick={props.addToCart}>＋</Button></div>
-                  <Button variant="outline-primary" className="cart-remove-btn" id={itemID + "-remove"} onClick={props.remove}>X</Button></p>
+                  <Button variant="outline-primary" style={cartRemoveButtonStyles} id={itemID + "-remove"} onClick={props.remove}>X</Button></p>
               </Col>
             </Row>
           ))}

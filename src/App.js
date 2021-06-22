@@ -46,9 +46,6 @@ const App = () => {
   const [itemDataset, setItemDataset] = useState([]);
   const [shoppingCart, setShoppingCart] = useState([]);
 
-  // try this instead… 1) no need to worry about item state being “done” before image state
-  // 2) easier access to data
-  // 3) easier to (eventually) store globally to avoid passing down to props…
   const storePageData = async function (pageNumber) {
     if (!itemDataset[pageNumber - 1]) {
       const pageItemData = await pullShopItems(pageNumber);
@@ -119,7 +116,8 @@ const App = () => {
     <BrowserRouter>
       <Navbar bg="light" sticky="top" variant="light">
         <Link className="navbar-brand" to="/">
-          <img src="https://cdn.shopify.com/s/files/1/1384/6395/files/RRB_Logo_HMILA_2010_web_x100.png?v=1558565941" />
+          <img src="https://cdn.shopify.com/s/files/1/1384/6395/files/RRB_Logo_HMILA_2010_web_x100.png?v=1558565941" 
+          alt="Roadrunner Bags logo"/>
         </Link>
         <Nav>
           <Link className="nav-link" to="/">

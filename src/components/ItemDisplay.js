@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react"
+import React, { useState} from "react"
 import { useParams } from 'react-router-dom';
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -52,10 +52,14 @@ const ItemDisplay = (props) => {
         <Col lg={12} xl={6}>
           <Row>
             <Col style={columnStyles}>
-              <h1 className="item-display-header" dangerouslySetInnerHTML={{ __html: itemData.title }} />
+              <h1 style={{
+                fontSize: '2rem',
+                marginTop: 0,
+              }} 
+              dangerouslySetInnerHTML={{ __html: itemData.title }} />
               <Button style={{marginBottom: '1rem'}} id={listingID} onClick={props.addToCart}>Add to Cart</Button>
               <p>${itemData.price}</p>
-              <h2 className="item-display-subheader">Description</h2>
+              <h2 style={{fontSize: '1.75rem'}}>Description</h2>
               <p dangerouslySetInnerHTML={{ __html: itemData.description }} />
             </Col>
           </Row>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import DisplayCard from "./DisplayCard.js";
 import ItemDisplay from "./ItemDisplay.js";
 import Container from "react-bootstrap/Container";
@@ -10,7 +10,6 @@ import Jumbotron from "react-bootstrap/Jumbotron";
 import { globals } from '../scripts/globals.js'
 import Spinner from "react-bootstrap/Spinner";
 import {
-  BrowserRouter,
   Route,
   Switch,
   Link,
