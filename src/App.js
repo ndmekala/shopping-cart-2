@@ -10,13 +10,12 @@ const App = () => {
   const pullShopItems = async function (pageNumber) {
     try {
       let response = await fetch(
-        `https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${
-          (pageNumber - 1) * 8
+        `https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${(pageNumber - 1) * 8
         }`
       );
       const shopItems = await response.json();
       return shopItems;
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
   };
@@ -28,10 +27,10 @@ const App = () => {
       );
       const itemImages = await response.json();
       return itemImages;
-    } catch(err) {
+    } catch (err) {
       console.log(err)
     }
-    
+
   };
 
   const lengthToArray = function (num) {
@@ -147,10 +146,10 @@ const App = () => {
         </Route>
         <Route path="/cart">
           <Cart shoppingCart={shoppingCart}
-          itemDataset={itemDataset}
-          addToCart={addToCart}
-          reduceQuantity={reduceQuantity}
-          remove={remove}/>
+            itemDataset={itemDataset}
+            addToCart={addToCart}
+            reduceQuantity={reduceQuantity}
+            remove={remove} />
         </Route>
       </Switch>
     </BrowserRouter>

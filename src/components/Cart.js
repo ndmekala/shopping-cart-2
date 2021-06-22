@@ -79,9 +79,9 @@ const Cart = (props) => {
           ))}
         </Col>
         <Col xs={12} md={4}>
-          <div style={{marginTop: '1rem'}}>
-            <p style={{fontSize: '2rem'}}>Subtotal: ${calculateTotal(props.shoppingCart)}</p>
-            <Button style={{ width: '100%' }} onClick={() => {alert('This is just a dummy link for now!')}}>Proceed to Checkout</Button>
+          <div style={{ marginTop: '1rem' }}>
+            <p style={{ fontSize: '2rem' }}>Subtotal: ${calculateTotal(props.shoppingCart)}</p>
+            <Button style={{ width: '100%' }} onClick={() => { alert('This is just a dummy link for now!') }}>Proceed to Checkout</Button>
           </div>
         </Col>
       </Row>

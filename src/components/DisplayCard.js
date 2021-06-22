@@ -29,8 +29,8 @@ const DisplayCard = (props) => {
   return (
     <div style={imageWrapperStyles} >
       <div style={imageStyle}
-      onMouseEnter={() => {setImageStyle(imageStyleHover)}}
-      onMouseLeave={() => {setImageStyle(imageStyleDefault)}}>
+        onMouseEnter={() => { setImageStyle(imageStyleHover) }}
+        onMouseLeave={() => { setImageStyle(imageStyleDefault) }}>
       </div>
     </div>
   );
