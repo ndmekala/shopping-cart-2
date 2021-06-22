@@ -43,13 +43,6 @@ const App = () => {
   // try this instead… 1) no need to worry about item state being “done” before image state
   // 2) easier access to data
   // 3) easier to (eventually) store globally to avoid passing down to props…
-
-
-  // realistically, however, this shoudl go to something like this:
-  // item Data array - each element is a page
-  // page array --> each element is an item object
-  // item object --> {listingID: {title: 'blah', imageData: {…}, description: 'blah'}}
-  // KEY IT by LISTING ID
   const storePageData = async function (pageNumber) {
     if (!itemDataset[pageNumber - 1]) {
       const pageItemData = await pullShopItems(pageNumber);
@@ -112,7 +105,7 @@ const App = () => {
     backgroundColor: 'var(--popstar)',
     color: 'var(--pale-silver)',
     paddingTop: '0.25rem',
-    paddingLeft: '0.5625rem',
+    paddingLeft: '0.5rem',
     fontSize: '0.75rem',
   }
 
