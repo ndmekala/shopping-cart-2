@@ -1,7 +1,6 @@
 :root {
 	--popstar: #CA4C69ff;
 	--dark-sienna: #420711ff;
-	--dark-sienna-trans: #f9d2d8;
 	--davys-grey: #4B5358ff;
 	--pale-silver: #C4B6A5ff;
 }
@@ -122,13 +121,18 @@ h1 {
 	border-color: var(--pale-silver);
 }
 
-.btn-primary:hover, .btn-primary:focus {
+.btn-primary:hover {
 	background-color: var(--dark-sienna);
 	border-color: var(--dark-sienna);
 }
 
+.btn-primary:focus {
+	background-color: var(--popstar);
+	border-color: var(--popstar);
+}
+
 .btn:focus {
-	box-shadow: 0 0 0 0.25rem var(--dark-sienna-trans);
+	box-shadow: 0 0 0 0.25rem var(--popstar);
 }
 
 a, a:visited, a:hover {
@@ -137,7 +141,7 @@ a, a:visited, a:hover {
 }
 
 a:hover {
-	color: var(--dark-sienna)
+	color: var(--popstar)
 }
 
 .page-link {
