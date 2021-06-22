@@ -81,7 +81,7 @@ const Cart = (props) => {
         <Col xs={12} md={4}>
           <div style={{ marginTop: '1rem' }}>
             <p style={{ fontSize: '2rem' }}>Subtotal: ${calculateTotal(props.shoppingCart)}</p>
-            <Button style={{ width: '100%' }} onClick={() => { alert('This is just a dummy link for now!') }}>Proceed to Checkout</Button>
+            <Button style={{ width: '100%' }} onClick={() => { alert('Just a dummy link for now. Thanks for checking out my project! 😃') }}>Proceed to Checkout</Button>
           </div>
         </Col>
       </Row>
