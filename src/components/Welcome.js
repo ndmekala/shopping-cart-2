@@ -67,7 +67,7 @@ const CardLink = (props) => {
       onMouseEnter={hover}
       onMouseLeave={removeHover}
       onClick={() => { window.location.href = props.href }}>
-      <img style={imageStyles} src={props.source} />
+      <img style={imageStyles} alt="Cycling gear from Roadrunner Bags" src={props.source}/>
       <div style={linkOverlayStyles}>
         <div style={linkTextStyles}>{props.text}</div>
       </div>
