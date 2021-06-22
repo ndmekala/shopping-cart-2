@@ -17,7 +17,10 @@ const CardLink = (props) => {
     top: '40%',
     right: '50%',
     transform: 'translateX(50%)',
-    color: '#ffffff'
+    color: '#fff',
+    padding: '0.375rem 0.75rem',
+    borderRadius: '0.25rem',
+    backgroundColor: 'var(--pale-silver)'
   }
 
   const containerStyles = {
@@ -89,12 +92,12 @@ const Welcome = () => {
           </Col>
           <Col sm={12} md={6} lg={3}>
             <CardLink href="https://github.com/ndmekala/shopping-cart-2"
-              text="👨🏾‍💻 Repository ❗️"
+              text="Repository 👨🏾‍💻"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/RRB_sold_here_grande.jpg?v=1543846166" />
           </Col>
           <Col sm={12} md={6} lg={3}>
             <CardLink href="https://www.meka.la"
-              text="👨🏾‍💻 Portfolio ❗️"
+              text="Portfolio 👨🏾‍💻"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/Road_Runner_Bags_Postal_Run.jpg?v=1608224911" />
           </Col>
           <Col sm={12} md={6} lg={3}>
