@@ -60,7 +60,7 @@ const Cart = (props) => {
   return (
     <Container>
       <Row>
-        <Col xs={12} md={8}>
+        <Col xs={12} md={8} lg={8}>
           {removeDuplicates(props.shoppingCart).map((itemID) => (
             <Row style={{ marginTop: '1rem' }}>
               <Col sm={12} md={6} lg={4}>
@@ -84,7 +84,7 @@ const Cart = (props) => {
             </Row>
           ))}
         </Col>
-        <Col xs={12} md={4}>
+        <Col xs={12} md={4} lg={4}>
           <div style={{ marginTop: '1rem' }}>
             <p style={{ fontSize: '2rem' }}>Subtotal: ${calculateTotal(props.shoppingCart)}</p>
             <Button style={{ width: '100%' }} onClick={() => { alert('Just a dummy link for now. Thanks for checking out my project! 😃') }}>Proceed to Checkout</Button>
