@@ -8,6 +8,7 @@ import Pagination from "react-bootstrap/Pagination";
 import Button from "react-bootstrap/Button";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import { globals } from '../scripts/globals.js'
+import Spinner from "react-bootstrap/Spinner";
 import {
   BrowserRouter,
   Route,
@@ -36,8 +37,15 @@ const Shop = (props) => {
 
   if (!props.itemDataset[props.currentPage - 1]) {
     return (
-      <div>
-        Loading!
+      <div style={{
+        width: '100%',
+        display: 'flex',
+        justifyContent: 'center',
+        marginTop: '1rem',
+      }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loading...</span>
+        </Spinner>
       </div>
     )
   }
@@ -58,9 +66,9 @@ const Shop = (props) => {
                     </Link>
                     <Button style={quickAddStyles} id={item.id} onClick={props.addToCart}>Quick Add</Button>
                     <div style={itemInfoStyle}>
-                    <Link to={`${url}/${item.id}`}>
-                    <p dangerouslySetInnerHTML={{ __html: `${globals.shortenTitle(item.title)} | $${item.price}` }}></p>
-                    </Link>
+                      <Link to={`${url}/${item.id}`}>
+                        <p dangerouslySetInnerHTML={{ __html: `${globals.shortenTitle(item.title)} | $${item.price}` }}></p>
+                      </Link>
                     </div>
                   </Col>
                 ))}
