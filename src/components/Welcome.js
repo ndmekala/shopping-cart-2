@@ -41,7 +41,7 @@ const CardLink = (props) => {
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'rgb(0, 0, 0, 0.8)',
+    backgroundColor: 'rgb(0, 0, 0, 0.4)',
     display: 'none',
   }
 
@@ -51,7 +51,7 @@ const CardLink = (props) => {
     left: '0',
     right: '0',
     bottom: '0',
-    backgroundColor: 'rgb(0, 0, 0, 0.7)',
+    backgroundColor: 'rgb(0, 0, 0, 0.4)',
     display: 'block',
   }
 
@@ -66,7 +66,7 @@ const CardLink = (props) => {
   }
 
   return (
-    <div style={containerStyles}
+    <div className="welcome-hover-override" style={containerStyles}
       onMouseEnter={hover}
       onMouseLeave={removeHover}
       onClick={() => { window.location.href = props.href }}>

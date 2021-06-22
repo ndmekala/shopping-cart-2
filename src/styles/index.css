@@ -227,3 +227,9 @@ a p {
 .item-display-subheader {
 	font-size: 1.75rem;
 }
+
+@media (max-width: 768px) {
+	.welcome-hover-override > div {
+		display: block !important;
+	}
+}
