@@ -10,7 +10,7 @@ const App = () => {
   const pullShopItems = async function (pageNumber) {
     try {
       let response = await fetch(
-        `https://shielded-peak-43727.herokuapp.com/etsy/shops/6127899/listings/active/?limit=8&offset=${(pageNumber - 1) * 8
+        `https://sleepy-meadow-52233.herokuapp.com/roadrunnerlistings/?limit=8&offset=${(pageNumber - 1) * 8
         }`
       );
       const shopItems = await response.json();
@@ -23,7 +23,7 @@ const App = () => {
   const pullItemImages = async function (itemID) {
     try {
       const response = await fetch(
-        `https://shielded-peak-43727.herokuapp.com/etsy/listings/${itemID}/images`
+        `https://sleepy-meadow-52233.herokuapp.com/listings/${itemID}/images/`
       );
       const itemImages = await response.json();
       return itemImages;
