@@ -86,7 +86,7 @@ const Welcome = () => {
       <Container>
         <Row>
           <Col sm={12} md={6} lg={3}>
-            <CardLink href="/shop"
+            <CardLink href="#/shop"
               text="Shop Now!"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/Road_Runner_Bags_Shop_USA_Made_1.jpg?v=1591294701" />
           </Col>
@@ -101,24 +101,24 @@ const Welcome = () => {
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/Road_Runner_Bags_Postal_Run.jpg?v=1608224911" />
           </Col>
           <Col sm={12} md={6} lg={3}>
-            <CardLink href="/shop"
+            <CardLink href="#/shop"
               text="Shop Now!"
               source="https://cdn.shopify.com/s/files/1/1384/6395/products/KleanKanteen_RoadRunnerBikeBags_Cat_8_1200x.jpg?v=1620753837" />
           </Col>
         </Row>
         <Row>
           <Col sm={12} md={12} lg={4}>
-            <CardLink href="/shop"
+            <CardLink href="#/shop"
               text="Shop Now!"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/Littleton_Colorado_Jumbo_Jammer_d48f66f8-a22a-4232-9b7f-1249365cde4b_1200x.jpg?v=1608231853" />
           </Col>
           <Col sm={12} md={12} lg={4}>
-            <CardLink href="/shop"
+            <CardLink href="#/shop"
               text="Shop Now!"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/DSF6122_1000x.JPG?v=1547591408" />
           </Col>
           <Col sm={12} md={12} lg={4}>
-            <CardLink href="/shop"
+            <CardLink href="#/shop"
               text="Shop Now!"
               source="https://cdn.shopify.com/s/files/1/1384/6395/files/road_runner_bags_burrito_supreme_on_velo_orange_pass_hunter_half.jpg?v=1616777043" />
           </Col>

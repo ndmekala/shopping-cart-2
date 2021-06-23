@@ -4,7 +4,7 @@ import Welcome from "./components/Welcome.js";
 import Cart from "./components/Cart.js";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
-import { BrowserRouter, Route, Switch, Link } from "react-router-dom";
+import { HashRouter, Route, Switch, Link } from "react-router-dom";
 
 const App = () => {
   const pullShopItems = async function (pageNumber) {
@@ -113,7 +113,7 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Navbar bg="light" sticky="top" variant="light">
         <Link className="navbar-brand" to="/">
           <img src="https://cdn.shopify.com/s/files/1/1384/6395/files/RRB_Logo_HMILA_2010_web_x100.png?v=1558565941" 
@@ -150,7 +150,7 @@ const App = () => {
             remove={remove} />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
